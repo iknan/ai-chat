@@ -1,0 +1,21 @@
+Name: ai_chat-api
+Host: 0.0.0.0
+Port: 8888
+
+Mysql:
+  Host: 47.113.177.135
+  Port: 3306
+  User: ai-chat
+  Pass: E6zhRdc3J8L6c4hn
+  DbName: ai-chat
+Redis:
+  Host: 47.113.177.135:6379
+  Type: node
+  User: root
+  Pass: "962464"
+  Tls: false
+  Db: 0
+LogConf:
+  Level: info
+  Path: "./internal/logs"
+  Mode: "file"
