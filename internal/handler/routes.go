@@ -6,6 +6,7 @@ package handler
 import (
 	"net/http"
 
+	login "ai_chat/internal/handler/login"
 	"ai_chat/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
@@ -15,9 +16,16 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 	server.AddRoutes(
 		[]rest.Route{
 			{
-				Method:  http.MethodGet,
-				Path:    "/from/:name",
-				Handler: Ai_chatHandler(serverCtx),
+				// 登录
+				Method:  http.MethodPost,
+				Path:    "/user/login",
+				Handler: login.LoginHandler(serverCtx),
+			},
+			{
+				// 发送验证码
+				Method:  http.MethodPost,
+				Path:    "/user/sendSms",
+				Handler: login.SendSmsHandler(serverCtx),
 			},
 		},
 	)

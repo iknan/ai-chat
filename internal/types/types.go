@@ -3,10 +3,17 @@
 
 package types
 
-type Request struct {
-	Name string `path:"name,options=you|me"`
+type LoginReq struct {
+	Phone string `json:"phone"`
+	Code  string `json:"code"`
+	Token string `json:"token,optional"`
 }
 
-type Response struct {
-	Message string `json:"message"`
+type LoginResp struct {
+	Token  string `json:"token"`
+	UserId int64  `json:"userId"`
+}
+
+type SendSmsReq struct {
+	Phone string `json:"phone"`
 }

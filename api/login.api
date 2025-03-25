@@ -1,0 +1,37 @@
+syntax = "v1"
+
+@server (
+  group:      login
+)
+
+service api{
+  @doc (
+  		summary: "登录"
+  	)
+  	@handler login
+  	post /user/login (LoginReq) returns (LoginResp)
+
+  	@doc (
+  		summary: "发送验证码"
+  	)
+  	@handler sendSms
+  	post /user/sendSms (SendSmsReq)
+}
+
+type (
+	// 定义登录接口的 json 请求体
+	LoginReq {
+		// 手机号和验证码
+		Phone    string `json:"phone"`
+		Code     string `json:"code"`
+		Token    string `json:"token,optional"`
+	}
+	LoginResp {
+		Token     string `json:"token"`
+		UserId    int64  `json:"userId"`
+	}
+	// 定义获取验证码的 json 请求体
+	SendSmsReq {
+		Phone string `json:"phone"`
+	}
+)
